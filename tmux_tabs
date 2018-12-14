@@ -1,0 +1,22 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+function new-tab()  {
+tmux split-window -h
+tmux send-keys "ls" "C-m"
+return
+}
+
+echo "cheecking if sessions exists"
+if [ $(tmux list-sessions -F "#S") == "Session1" ]; then
+	echo "killing previous session"
+	tmux kill-session -t "Session1"
+fi
+echo "opening tmux tabs"
+tmux new-session -s "Session1" -d
+tmux send-keys "ls" "C-m"
+
+new-tab
+new-tab
+
+echo "atachimg window"
+tmux attach-session -t "Session1"
