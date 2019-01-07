@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!$(PREFIX)/bin/bash
 
 function new-tab()  {
 tmux split-window -h
@@ -6,7 +6,7 @@ tmux send-keys "ls" "C-m"
 return
 }
 
-echo "cheecking if sessions exists"
+echo "checking if sessions exists"
 if [ $(tmux list-sessions -F "#S") == "Session1" ]; then
 	echo "killing previous session"
 	tmux kill-session -t "Session1"
